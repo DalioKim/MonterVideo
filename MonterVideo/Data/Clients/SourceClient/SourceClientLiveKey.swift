@@ -6,7 +6,6 @@
 //
 
 import Dependencies
-import Foundation
 
 extension SourceClient: DependencyKey {
     public static let liveValue = {

@@ -167,10 +167,8 @@
 			children = (
 				E39A46292C156DB700B9A178 /* App */,
 				E39A462A2C15719500B9A178 /* Data */,
-				E3D5F2A02C12F1AB00CC6592 /* Component */,
 				E3D5F29E2C12F19500CC6592 /* Screen */,
 				E355CCE12C5BBC110008AC27 /* Helper */,
-				E39A462F2C1577F100B9A178 /* DesignSystem */,
 				E3D5F29F2C12F19F00CC6592 /* Resources */,
 				E302902E2C12D67E00595EB7 /* Preview Content */,
 			);
@@ -285,13 +283,6 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		E39A462F2C1577F100B9A178 /* DesignSystem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DesignSystem;
-			sourceTree = "<group>";
-		};
 		E39A46302C1578F200B9A178 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,13 +306,6 @@
 				E302902C2C12D67E00595EB7 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		E3D5F2A02C12F1AB00CC6592 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 		E3D5F2A12C12F22D00CC6592 /* Common */ = {

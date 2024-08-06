@@ -10,5 +10,5 @@ import Foundation
 
 @DependencyClient
 public struct SourceClient {
-    public var load: @Sendable (URL) async throws -> VideoAsset
+    public var load: @Sendable (URL) throws -> VideoAsset
 }

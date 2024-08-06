@@ -40,11 +40,10 @@ struct Source {
                 return .none
                 
             case .update(let url):
-//                print("update \()")
                 return .run { send in
                     await send(
                         .trim(
-                            try await loadSourceAsync(url, sourceClient: sourceClient)
+                            try loadSource(url, sourceClient: sourceClient)
                         )
                     )
                 }
@@ -53,14 +52,13 @@ struct Source {
                 return .run { send in
                     await send(
                         .response(
-                            try await trimFrameAsync(asset, videoGenerateClient: videoGenerateClient)
+                            try trimFrame(asset, videoGenerateClient: videoGenerateClient)
                         )
                     )
                 }
                 
             case .response(let thumbnails):
                 state.thumbnails = thumbnails
-                print("state \(thumbnails.count)")
                 return .none
             }
         }

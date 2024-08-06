@@ -5,7 +5,6 @@
 //  Created by 김동현 on 2024/07/31.
 //
 
-import Combine
 import ComposableArchitecture
 import SwiftUI
 
@@ -56,7 +55,6 @@ extension SourceView {
     private var gridThumbnails: some View {
         ScrollView{
             LazyVGrid(columns: adaptiveColumn, spacing: 20) {
-                
                 ForEach(store.state.thumbnails, id: \.self) { item in
                     let myNsImage = NSImage(cgImage: item.img, size: .init(width: 100, height: 100))
                     Image(nsImage: myNsImage)

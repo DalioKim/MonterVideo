@@ -5,13 +5,11 @@
 //  Created by 김동현 on 2024/08/01.
 //
 
-import Combine
 import ComposableArchitecture
-import Foundation
 
-public func trimFrameAsync(
+public func trimFrame(
     _ assset: VideoAsset,
     videoGenerateClient: VideoGenerateClient
-) async throws -> [FrameThumbnail] {
-    return try await videoGenerateClient.trimThumbnail(assset)
+) throws -> [FrameThumbnail] {
+    return try videoGenerateClient.trimThumbnail(assset)
 }

@@ -6,9 +6,8 @@
 //
 
 import DependenciesMacros
-import Foundation
 
 @DependencyClient
 public struct VideoGenerateClient {
-    public var trimThumbnail: @Sendable (VideoAsset) async throws -> [FrameThumbnail]
+    public var trimThumbnail: @Sendable (VideoAsset) throws -> [FrameThumbnail]
 }
