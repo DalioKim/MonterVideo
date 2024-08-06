@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
-import CoreData
-import AVFoundation
+import ComposableArchitecture
 
 struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     var body: some View {
         NavigationView {
-            LoadResourceView()
+            SourceView()
         }
     }
     

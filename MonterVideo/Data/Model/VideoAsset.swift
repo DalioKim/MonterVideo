@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct VideoAsset: Identifiable, Hashable {
-    var id = UUID()
-    var title: String?
+public struct VideoAsset: Identifiable, Hashable {
+    public var id = UUID()
     var url: URL
 }

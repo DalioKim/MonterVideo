@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-struct FrameThumbnail: Identifiable, Hashable {
-    var id = UUID()
-    var img: CGImage
+public struct FrameThumbnail: Identifiable, Hashable {
+    public var id = UUID()
+    public var img: CGImage
 }

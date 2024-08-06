@@ -10,9 +10,9 @@ import ComposableArchitecture
 import SwiftUI
 
 struct SourceView: View {
-    @ObservedObject var generateClient: VideoGenerateClient
-    @ObservedObject var loaderClient: VideoLoaderClient
     @State private var isImporting: Bool = false
+    
+    var store: StoreOf<Source>
 
     private let adaptiveColumn = [
         GridItem(.adaptive(minimum: 150))
@@ -25,28 +25,45 @@ struct SourceView: View {
         }
     }
     
-    init() {
-        let loaderClient = VideoLoaderClient()
-        self.loaderClient = loaderClient
-        self.generateClient = VideoGenerateClient(client: loaderClient)
+    public init() {
+        let store = Store(initialState: Source.State()) {
+            Source()
+        }
+      self.store = store
     }
 }
 
 extension SourceView {
     private var importBtn: some View {
         Button(action: {
+            isImporting = true
         }, label: {
             Text("Import Resource")
         })
-        .buttonStyle(ImportVideoStyle(client: loaderClient))
+        .fileImporter(isPresented: $isImporting,
+                      allowedContentTypes: [.mpeg4Movie],
+                      onCompletion: { result in
+            
+            switch result {
+            case .success(let url):
+                store.send(.update(url), animation: .default)
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
         
     private var gridThumbnails: some View {
         ScrollView{
             LazyVGrid(columns: adaptiveColumn, spacing: 20) {
-                ForEach(generateClient.thumbnails, id: \.self) { item in
+                
+                ForEach(store.state.thumbnails, id: \.self) { item in
                     let myNsImage = NSImage(cgImage: item.img, size: .init(width: 100, height: 100))
                     Image(nsImage: myNsImage)
+                        .onAppear {
+                            print("state item \(item)")
+                        }
+
                 }
             }
         }
