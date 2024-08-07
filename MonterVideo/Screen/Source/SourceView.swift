@@ -10,20 +10,20 @@ import SwiftUI
 
 struct SourceView: View {
     @State private var isImporting: Bool = false
-    
+
     var store: StoreOf<Source>
 
     private let adaptiveColumn = [
         GridItem(.adaptive(minimum: 150))
     ]
-    
+
     var body: some View {
         VStack {
             importBtn
             gridThumbnails
         }
     }
-    
+
     public init() {
         let store = Store(initialState: Source.State()) {
             Source()
@@ -42,7 +42,7 @@ extension SourceView {
         .fileImporter(isPresented: $isImporting,
                       allowedContentTypes: [.mpeg4Movie],
                       onCompletion: { result in
-            
+
             switch result {
             case .success(let url):
                 store.send(.update(url), animation: .default)
@@ -51,9 +51,9 @@ extension SourceView {
             }
         })
     }
-        
+
     private var gridThumbnails: some View {
-        ScrollView{
+        ScrollView {
             LazyVGrid(columns: adaptiveColumn, spacing: 20) {
                 ForEach(store.state.thumbnails, id: \.self) { item in
                     let myNsImage = NSImage(cgImage: item.img, size: .init(width: 100, height: 100))

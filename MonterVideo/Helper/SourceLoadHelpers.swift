@@ -14,4 +14,3 @@ public func loadSource(
 ) throws -> VideoAsset {
      return try sourceClient.load(url)
 }
-
