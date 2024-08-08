@@ -7,9 +7,6 @@ target 'MonterVideo' do
 
   # Pods for MonterVideo
 
-pod 'SwiftFormat/CLI'
-
-
   target 'MonterVideoTests' do
     inherit! :search_paths
     # Pods for testing

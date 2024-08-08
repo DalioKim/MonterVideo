@@ -1,0 +1,53 @@
+# Directory and file filters
+excluded:
+  - Pods
+  - MonterVideoTests/
+  - MonterVideoUITests/
+
+# Enabled/disabled rules
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+  
+opt_in_rules:
+  - empty_count
+  - file_name
+
+disabled_rules:
+  - anonymous_argument_in_multiline_closure
+  - conditional_returns_on_newline
+  - convenience_type
+  - closing_brace
+  - explicit_acl
+  - explicit_enum_raw_value
+  - explicit_top_level_acl
+  - explicit_type_interface
+  - file_types_order
+  - force_unwrapping
+  - function_default_parameter_at_end
+  - indentation_width
+  - multiline_arguments
+  - multiline_arguments_brackets
+  - multiline_function_chains
+  - multiline_parameters_brackets
+  - no_extension_access_modifier
+  - no_grouping_extension
+  - no_magic_numbers
+  - one_declaration_per_file
+  - prefixed_toplevel_constant
+  - required_deinit
+  - sorted_enum_cases
+  - strict_fileprivate
+  - switch_case_on_newline
+  - todo
+  - trailing_closure
+  - type_contents_order
+  - unused_capture_list
+  - vertical_whitespace_between_cases
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+
+# Configurations
+
+# Custom rules
+
