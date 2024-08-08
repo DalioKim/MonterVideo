@@ -13,12 +13,12 @@ struct Source {
     @ObservableState
     struct State: Equatable {
         var thumbnails: [FrameThumbnail]
-        
+
         init(thumbnails: [FrameThumbnail] = []) {
             self.thumbnails = thumbnails
         }
     }
-    
+
     enum Action: Equatable {
         case onAppear
         case onDisappear
@@ -26,19 +26,19 @@ struct Source {
         case trim(VideoAsset)
         case response([FrameThumbnail])
     }
-    
+
     @Dependency(\.sourceClient) var sourceClient
     @Dependency(\.videoGenerateClient) var videoGenerateClient
-    
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
                 return .none
-                
+
             case .onDisappear:
                 return .none
-                
+
             case .update(let url):
                 return .run { send in
                     await send(
@@ -47,7 +47,7 @@ struct Source {
                         )
                     )
                 }
-                
+
             case .trim(let asset):
                 return .run { send in
                     await send(
@@ -56,7 +56,7 @@ struct Source {
                         )
                     )
                 }
-                
+
             case .response(let thumbnails):
                 state.thumbnails = thumbnails
                 return .none

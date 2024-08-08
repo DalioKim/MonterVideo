@@ -23,11 +23,14 @@ func genetate(asset: VideoAsset) -> [FrameThumbnail] {
     let imageGenerator = AVAssetImageGenerator(asset: targetAasset)
     let duration = CMTimeGetSeconds(targetAasset.duration)
     var thumbnails = [FrameThumbnail]()
-    
+
     for idx in stride(from: 0, to: duration, by: 100) {
         let time = CMTime(value: CMTimeValue(idx * 100), timescale: 100)
-        let cgImage = try! imageGenerator.copyCGImage(at: time, actualTime: nil)
-        thumbnails.append(FrameThumbnail(img: cgImage))
+        do {
+            let cgImage = try imageGenerator.copyCGImage(at: time, actualTime: nil)
+            thumbnails.append(FrameThumbnail(img: cgImage))
+        } catch {
+        }
     }
     return thumbnails
 }
