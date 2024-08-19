@@ -1,5 +1,5 @@
 //
-//  SourceDirectoryView.swift
+//  ClipCollectionView.swift
 //  MonterVideo
 //
 //  Created by 김동현 on 2024/07/31.
@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ClipeCollectionView: View {
+struct ClipCollectionView: View {
     @State private var isImporting: Bool = false
 
     var store: StoreOf<ClipCollection>
@@ -32,7 +32,7 @@ struct ClipeCollectionView: View {
     }
 }
 
-extension ClipeCollectionView {
+extension ClipCollectionView {
     private var importBtn: some View {
         Button(action: {
             isImporting = true

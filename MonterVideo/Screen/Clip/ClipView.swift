@@ -2,7 +2,7 @@
 //  ClipView.swift
 //  MonterVideo
 //
-//  Created by 김동현 on 8/12/24.
+//  Created by 김동현 on 8/19/24.
 //
 
 import SwiftUI
