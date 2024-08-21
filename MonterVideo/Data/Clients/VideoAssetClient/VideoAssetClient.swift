@@ -8,6 +8,6 @@
 import DependenciesMacros
 
 @DependencyClient
-public struct VideoGenerateClient {
+public struct VideoAssetClient {
     public var trimThumbnail: @Sendable (VideoAsset) throws -> [FrameThumbnail]
 }

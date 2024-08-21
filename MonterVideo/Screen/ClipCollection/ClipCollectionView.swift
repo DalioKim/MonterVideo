@@ -1,5 +1,5 @@
 //
-//  SourceView.swift
+//  ClipCollectionView.swift
 //  MonterVideo
 //
 //  Created by 김동현 on 2024/07/31.
@@ -8,10 +8,10 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct SourceView: View {
+struct ClipCollectionView: View {
     @State private var isImporting: Bool = false
 
-    var store: StoreOf<Source>
+    var store: StoreOf<ClipCollection>
 
     private let adaptiveColumn = [
         GridItem(.adaptive(minimum: 150))
@@ -25,14 +25,14 @@ struct SourceView: View {
     }
 
     public init() {
-        let store = Store(initialState: Source.State()) {
-            Source()
+        let store = Store(initialState: ClipCollection.State()) {
+            ClipCollection()
         }
       self.store = store
     }
 }
 
-extension SourceView {
+extension ClipCollectionView {
     private var importBtn: some View {
         Button(action: {
             isImporting = true
@@ -45,7 +45,7 @@ extension SourceView {
 
             switch result {
             case .success(let url):
-                store.send(.update(url), animation: .default)
+                store.send(.loadClip(url), animation: .default)
             case .failure(let error):
                 print(error)
             }
