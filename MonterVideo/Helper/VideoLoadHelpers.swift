@@ -1,5 +1,5 @@
 //
-//  SourceLoadHelpers.swift
+//  VideoLoadHelpers.swift
 //  MonterVideo
 //
 //  Created by 김동현 on 2024/08/01.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-public func loadSource(
+public func loadVideo(
     _ url: URL,
-    sourceClient: SourceClient
+    assetClient: VideoAssetClient
 ) throws -> VideoAsset {
-     return try sourceClient.load(url)
+     return try assetClient.load(url)
 }

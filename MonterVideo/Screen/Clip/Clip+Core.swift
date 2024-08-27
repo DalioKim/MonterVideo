@@ -11,31 +11,30 @@ import SwiftUI
 @Reducer
 struct Clip {
     @ObservableState
-    struct State: Equatable {
-        let asset: VideoAsset
+    struct State: Equatable, Identifiable {
+        var id = UUID()
+        let asset: VideoAsset?
         var thumbnails = [FrameThumbnail]()
-        init(asset: VideoAsset) {
+
+        init(with asset: VideoAsset? = nil) {
             self.asset = asset
         }
     }
-    
+
     enum Action: Equatable {
         case onAppear
         case onDisappear
         case response([FrameThumbnail])
-        
-        // subscription each clip(drag event시 지정된 Range도 확인
-        // Set the range
     }
-    
+
     @Dependency(\.videoAssetClient) var videoAssetClient
-    
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                let asset = state.asset
-                
+                guard let asset = state.asset else { return .none }
+
                 return .run { send in
                     await send(
                         .response(
@@ -43,10 +42,10 @@ struct Clip {
                         )
                     )
                 }
-                
+
             case .onDisappear:
                 return .none
-                
+
             case .response(let thumbnails):
                 state.thumbnails = thumbnails
                 return .none
