@@ -20,7 +20,7 @@
 		D37EF42A2C7DF26F00B1B74A /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF4292C7DF26F00B1B74A /* PersistenceController.swift */; };
 		D37EF42E2C7DF2A200B1B74A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF42D2C7DF2A200B1B74A /* MainView.swift */; };
 		D37EF4362C7DF3AC00B1B74A /* DependencyValues+VideoAssetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF40E2C7DF10000B1B74A /* DependencyValues+VideoAssetClient.swift */; };
-		D37EF4372C7DF4E400B1B74A /* SizeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF4312C7DF2FC00B1B74A /* SizeRatio.swift */; };
+		D37EF4372C7DF4E400B1B74A /* DivisionRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF4312C7DF2FC00B1B74A /* DivisionRatio.swift */; };
 		D37EF4382C7DF4E600B1B74A /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF4322C7DF2FC00B1B74A /* Spacing.swift */; };
 		DC39F8FC3A62968C1DDA362E /* Pods_MonterVideo_MonterVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F070E481EEEC663C75308B23 /* Pods_MonterVideo_MonterVideoUITests.framework */; };
 		E30290292C12D67C00595EB7 /* MonterVideoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30290282C12D67C00595EB7 /* MonterVideoApp.swift */; };
@@ -71,7 +71,7 @@
 		D37EF4272C7DF23000B1B74A /* VideoAssetClient+DependencyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoAssetClient+DependencyKey.swift"; sourceTree = "<group>"; };
 		D37EF4292C7DF26F00B1B74A /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		D37EF42D2C7DF2A200B1B74A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../../../../RefactorSource/MonterVideo/Screen/Common/MainView.swift; sourceTree = "<group>"; };
-		D37EF4312C7DF2FC00B1B74A /* SizeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeRatio.swift; sourceTree = "<group>"; };
+		D37EF4312C7DF2FC00B1B74A /* DivisionRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionRatio.swift; sourceTree = "<group>"; };
 		D37EF4322C7DF2FC00B1B74A /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		DA44F183AC510A5AC6B31A32 /* Pods_MonterVideoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MonterVideoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E30290252C12D67C00595EB7 /* MonterVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonterVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +162,7 @@
 		D37EF4332C7DF2FC00B1B74A /* Size */ = {
 			isa = PBXGroup;
 			children = (
-				D37EF4312C7DF2FC00B1B74A /* SizeRatio.swift */,
+				D37EF4312C7DF2FC00B1B74A /* DivisionRatio.swift */,
 				D37EF4322C7DF2FC00B1B74A /* Spacing.swift */,
 			);
 			path = Size;
@@ -581,7 +581,7 @@
 				D37EF4172C7DF14600B1B74A /* VideoLoadHelpers.swift in Sources */,
 				E355CCDE2C5BB8FC0008AC27 /* FrameTrimHelpers.swift in Sources */,
 				D37EF4382C7DF4E600B1B74A /* Spacing.swift in Sources */,
-				D37EF4372C7DF4E400B1B74A /* SizeRatio.swift in Sources */,
+				D37EF4372C7DF4E400B1B74A /* DivisionRatio.swift in Sources */,
 				E30290352C12D67E00595EB7 /* MonterVideo.xcdatamodeld in Sources */,
 				D37EF4212C7DF1CC00B1B74A /* ClipCollection+Core.swift in Sources */,
 				E30290292C12D67C00595EB7 /* MonterVideoApp.swift in Sources */,

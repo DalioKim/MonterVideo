@@ -9,7 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ClipCollectionView: View {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State private var isImporting: Bool = false
 
     var store: StoreOf<ClipCollection>
@@ -51,11 +50,16 @@ extension ClipCollectionView {
 
     private var gridThumbnails: some View {
         GeometryReader { reader in
+            let widthSpacing = CGFloat.none
+            let heightSpacing = CGFloat.small
+            let gridItemWidth = reader.size.width.devidedSize(.eight, spacing: widthSpacing)
+            let gridItemHeight = reader.size.height.devidedSize(.eight, spacing: heightSpacing)
+
             ScrollView {
-                LazyVGrid(columns: adaptiveColumn(reader.size.width), spacing: .small) {
+                LazyVGrid(columns: adaptiveColumn(gridItemWidth, with: widthSpacing), spacing: heightSpacing) {
                     ForEach(store.scope(state: \.clips, action: \.clipAcion)) { store in
                         ClipView(store: store)
-                            .frame(minHeight: reader.size.height.eightAreas)
+                            .frame(minHeight: gridItemHeight)
                     }
                 }
                 .padding(.bottom)
@@ -63,7 +67,7 @@ extension ClipCollectionView {
         }
     }
 
-    private func adaptiveColumn(_ width: CGFloat) -> [GridItem] {
-        return [GridItem(.adaptive(minimum: width.eightAreas), spacing: .none)]
+    private func adaptiveColumn(_ width: CGFloat, with spacing: CGFloat) -> [GridItem] {
+        return [GridItem(.adaptive(minimum: width), spacing: spacing)]
     }
 }
