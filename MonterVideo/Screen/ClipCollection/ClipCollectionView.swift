@@ -13,10 +13,6 @@ struct ClipCollectionView: View {
 
     var store: StoreOf<ClipCollection>
 
-    private let adaptiveColumn = [
-        GridItem(.adaptive(minimum: 150))
-    ]
-
     var body: some View {
         VStack {
             importBtn
@@ -28,7 +24,7 @@ struct ClipCollectionView: View {
         let store = Store(initialState: ClipCollection.State()) {
             ClipCollection()
         }
-      self.store = store
+        self.store = store
     }
 }
 
@@ -53,18 +49,25 @@ extension ClipCollectionView {
     }
 
     private var gridThumbnails: some View {
-        ScrollView {
-            LazyVGrid(columns: adaptiveColumn, spacing: 20) {
-                ForEach(store.state.thumbnails, id: \.self) { item in
-                    let myNsImage = NSImage(cgImage: item.img, size: .init(width: 100, height: 100))
-                    Image(nsImage: myNsImage)
-                        .onAppear {
-                            print("state item \(item)")
-                        }
+        GeometryReader { reader in
+            let widthSpacing = CGFloat.none
+            let heightSpacing = CGFloat.small
+            let gridItemWidth = reader.size.width.devidedSize(.eight, spacing: widthSpacing)
+            let gridItemHeight = reader.size.height.devidedSize(.eight, spacing: heightSpacing)
 
+            ScrollView {
+                LazyVGrid(columns: adaptiveColumn(gridItemWidth, with: widthSpacing), spacing: heightSpacing) {
+                    ForEach(store.scope(state: \.clips, action: \.clipAcion)) { store in
+                        ClipView(store: store)
+                            .frame(minHeight: gridItemHeight)
+                    }
                 }
+                .padding(.bottom)
             }
         }
-        .padding()
+    }
+
+    private func adaptiveColumn(_ width: CGFloat, with spacing: CGFloat) -> [GridItem] {
+        return [GridItem(.adaptive(minimum: width), spacing: spacing)]
     }
 }

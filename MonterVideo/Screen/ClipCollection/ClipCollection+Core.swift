@@ -12,9 +12,10 @@ import SwiftUI
 struct ClipCollection {
     @ObservableState
     struct State: Equatable {
-        var thumbnails: [FrameThumbnail]
-        init(thumbnails: [FrameThumbnail] = []) {
-            self.thumbnails = thumbnails
+        var clips: IdentifiedArrayOf<Clip.State>
+
+        init(clips: IdentifiedArrayOf<Clip.State> = []) {
+            self.clips = clips
         }
     }
 
@@ -22,9 +23,8 @@ struct ClipCollection {
         case onAppear
         case onDisappear
         case loadClip(URL)
-        case response([FrameThumbnail])
-        //        case trim(VideoAsset)
-        //        case response([FrameThumbnail])
+        case response(VideoAsset)
+        case clipAcion(IdentifiedActionOf<Clip>)
 
         // subscription each clip(drag event시 지정된 Range도 확인
         // Set the range
@@ -45,26 +45,21 @@ struct ClipCollection {
                 return .run { send in
                     await send(
                         .response(
-                            try trimFrame(VideoAsset(url: url), videoAssetClient: videoAssetClient)
+                            try loadVideo(url, assetClient: videoAssetClient)
                         )
                     )
                 }
 
-            case .response(let thumbnails):
-                print("thumbnails \(thumbnails)")
-                state.thumbnails = thumbnails
+            case .response(let asset):
+                state.clips.append(.init(with: asset))
                 return .none
 
-                //            case .trim(let asset):
-                //                return .run { send in
-                //                    await send(
-                //                        .response(
-                //                            try trimFrame(asset, videoGenerateClient: videoGenerateClient)
-                //                        )
-                //                    )
-                //                }
-                //
+            case .clipAcion:
+                return .none
             }
+        }
+        .forEach(\.clips, action: \.clipAcion) {
+            Clip()
         }
     }
 }
