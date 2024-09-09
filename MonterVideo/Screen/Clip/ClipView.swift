@@ -13,14 +13,15 @@ struct ClipView: View {
 
     public init(store: StoreOf<Clip>) {
         self.store = store
+
+        // TODO: Modify the declaration position.
         store.send(.onAppear)
     }
 
     var body: some View {
         ForEach(store.state.thumbnails, id: \.self) { item in
-            GeometryReader { reader in
-                let thumbnail = NSImage(cgImage: item.img, size: .init(width: reader.size.width, height: reader.size.height))
-                Image(nsImage: thumbnail)
+            GeometryReader { _ in
+                MTKImage(img: item.img)
             }
         }
     }

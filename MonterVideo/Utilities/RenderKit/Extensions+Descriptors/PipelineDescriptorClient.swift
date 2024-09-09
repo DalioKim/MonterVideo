@@ -1,22 +1,20 @@
 //
-//  PipelineDescriptor.swift
+//  PipelineDescriptorClient.swift
 //  MonterVideo
 //
 //  Created by 김동현 on 9/5/24.
 //
 
 import Metal
-import MetalKit
 
-public extension MTLRenderPipelineDescriptor {
-    convenience init(functions: [MTLFunction], pixelformat: MTLPixelFormat, vertexDescritor: MTLVertexDescriptor) {
+extension MTLRenderPipelineDescriptor {
+    convenience init(textureShaders: [MTLFunction],
+                     vertexDescriptor: MTLVertexDescriptor,
+                     pixelFormat: MTLPixelFormat) {
         self.init()
-        self.vertexFunction = functions[0]
-        self.fragmentFunction = functions[1]
-        self.vertexDescriptor = vertexDescritor
-        self.colorAttachments[0].pixelFormat = pixelformat
-    }
-    
-    private func didSetFunction() {
+        self.vertexFunction = textureShaders[0]
+        self.fragmentFunction = textureShaders[1]
+        self.vertexDescriptor = vertexDescriptor
+        self.colorAttachments[0].pixelFormat = pixelFormat
     }
 }

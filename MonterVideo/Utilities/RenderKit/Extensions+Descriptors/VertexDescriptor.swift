@@ -8,23 +8,31 @@
 import Metal
 import MetalKit
 
-public enum Semantic: Hashable, Sendable {
-    case position
-    case normal
-    case textureCoordinate
-    // TODO: Add in more semantics. (From ModelIO semantics and GLTF etc)
-}
+extension MTLVertexDescriptor {
+    convenience init(_ shader: Shader) {
+        self.init()
+        didsetLayouts(with: shader)
+        didsetAttributes(with: shader)
+    }
+    private func didsetLayouts(with shader: Shader) {
+        switch shader {
+        case .texture:
+            self.layouts[30].stride = MemoryLayout<TextureVertex>.stride
+            self.layouts[30].stepRate = 1
+            self.layouts[30].stepFunction = MTLVertexStepFunction.perVertex
+        }
+    }
 
-extension Semantic: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .position:
-            try container.encode("position")
-        case .normal:
-            try container.encode("normal")
-        case .textureCoordinate:
-            try container.encode("textureCoordinate")
+    private func didsetAttributes(with shader: Shader) {
+        switch shader {
+        case .texture:
+            self.attributes[0].format = MTLVertexFormat.float2
+            self.attributes[0].offset = MemoryLayout.offset(of: \TextureVertex.position)!
+            self.attributes[0].bufferIndex = 30
+
+            self.attributes[1].format = MTLVertexFormat.float2
+            self.attributes[1].offset = float2.size
+            self.attributes[1].bufferIndex = 30
         }
     }
 }
